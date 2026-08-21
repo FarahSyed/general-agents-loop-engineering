@@ -3,11 +3,16 @@
 This is a **practice repo for loop engineering**. It is throwaway — never
 treat anything in here as production code.
 
+Two tracks:
+
+- `claude-code/` — projects 1-8, uses Claude Code (`claude` CLI)
+- `opencode/` — projects 9-16, uses OpenCode (`opencode` CLI)
+
 ## Loop safety rules (apply to every project)
 
-- Every unattended loop (`/goal`, `/schedule`, a Routine, a GitHub trigger)
-  must have a **cap**: max tries, max minutes, or "stop after N turns and
-  write to progress.md."
+- Every unattended loop (`/goal`, `/schedule`, a Routine, a GitHub trigger,
+  a bash polling script, a cron job) must have a **cap**: max tries, max
+  minutes, or "stop after N turns and write to progress.md."
 - A stopping condition must be something a **command can prove** (a test
   passing, a script printing a number), not something only the agent's own
   opinion can confirm. If a project's condition can't be proven by a command,
