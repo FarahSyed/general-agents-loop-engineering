@@ -1,0 +1,14 @@
+{
+  "name": "p8-daily-loop",
+  "version": "1.0.0",
+  "description": "Project 8: Your Own Daily Loop — Capstone project",
+  "scripts": {
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "lint:report": "eslint src/ --format json > lint-results.json",
+    "sweep": "bash lint-sweep.sh"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0"
+  }
+}
