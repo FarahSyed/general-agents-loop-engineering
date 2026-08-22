@@ -1,9 +1,9 @@
 // Sample application code with lint issues
 
 function calculateTotal(items) {
-  var total = 0;  // ESLint: prefer let/const
+  let total = 0;  // ESLint: prefer let/const
   
-  for (var i = 0; i < items.length; i++) {  // ESLint: prefer let/const
+  for (let i = 0; i < items.length; i++) {  // ESLint: prefer let/const
     total += items[i].price
   }
   
@@ -12,9 +12,9 @@ function calculateTotal(items) {
 
 function formatDate(date) {
   // ESLint: no-unused-vars
-  var year = date.getFullYear()
-  var month = date.getMonth() + 1
-  var day = date.getDate()
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
   
   return `${year}-${month}-${day}`
 }

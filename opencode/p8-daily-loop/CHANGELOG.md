@@ -23,3 +23,10 @@ All notable changes to this project will be documented in this file.
 - **Auto-fixed:** 0
 - **Remaining:** 
 - **Auto-fixed:** 0
+
+## 2026-08-22 Lint Sweep
+
+- **Total issues:** 6+5
+- **Auto-fixed:** 10
+- **Remaining:** 1+0
+- **Auto-fixed:** 10

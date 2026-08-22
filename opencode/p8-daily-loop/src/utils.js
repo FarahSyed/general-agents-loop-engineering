@@ -7,15 +7,15 @@ function unusedFunction() {
 
 function validateEmail(email) {
   // ESLint: no-useless-escape
-  var regex = /\S+@\S+\.\S+/
+  const regex = /\S+@\S+\.\S+/
   return regex.test(email)
 }
 
 function processData(data) {
   // ESLint: no-var
-  var result = []
+  const result = []
   
-  for (var i = 0; i < data.length; i++) {
+  for (let i = 0; i < data.length; i++) {
     if (data[i].active) {
       result.push(data[i])
     }
@@ -26,10 +26,10 @@ function processData(data) {
 
 // ESLint: no-shadow
 function example() {
-  var data = "outer"
+  const data = "outer"
   
   function inner() {
-    var data = "inner"  // Shadows outer variable
+    const data = "inner"  // Shadows outer variable
     return data
   }
   
