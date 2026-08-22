@@ -70,7 +70,7 @@ One agent writes. A different agent or command grades.
 | 2 | Make Tests Pass | Done | Conditional loop + maker-checker |
 | 3 | Morning Brief with Memory | Done | Spine that remembers |
 | 4 | Fix Loop with Real Checker | Done | Separate reviewer agent |
-| 5 | Codify the Body | Pending | Reusable script |
-| 6 | The Doorbell Loop | Pending | Event-driven + connectors |
-| 7 | Break It on Purpose | Pending | Observability + cost |
-| 8 | Your Own Daily Loop | Pending | Full 6-part loop |
+| 5 | Codify the Body | Done | Reusable script |
+| 6 | The Doorbell Loop | Done | Event-driven + connectors |
+| 7 | Break It on Purpose | Done | Observability + cost |
+| 8 | Your Own Daily Loop | Done | Full 6-part loop |
