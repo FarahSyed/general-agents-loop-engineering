@@ -1,0 +1,11 @@
+{
+  "name": "p4-fix-loop",
+  "version": "1.0.0",
+  "description": "Project 4: Fix Loop with Real Checker — maker-checker with a reviewer agent",
+  "scripts": {
+    "test": "jest --verbose"
+  },
+  "devDependencies": {
+    "jest": "^30.4.2"
+  }
+}

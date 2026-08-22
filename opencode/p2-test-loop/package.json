@@ -1,0 +1,11 @@
+{
+  "name": "p2-test-loop",
+  "version": "1.0.0",
+  "description": "Project 2: Conditional loop — make tests pass, then stop",
+  "scripts": {
+    "test": "jest --verbose"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}
