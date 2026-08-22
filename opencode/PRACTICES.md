@@ -74,3 +74,7 @@ One agent writes. A different agent or command grades.
 | 6 | The Doorbell Loop | Done | Event-driven + connectors |
 | 7 | Break It on Purpose | Done | Observability + cost |
 | 8 | Your Own Daily Loop | Done | Full 6-part loop |
+| 9 | Rehearse a Routine | Pending | One-off runs + A5 |
+| 10 | The Secrets Drill | Pending | Secrets in env vars |
+| 11 | Two-Routine Gate | Pending | Human gate |
+| 12 | Dreaming Loop | Pending | Meta-loop + improvement |
