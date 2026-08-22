@@ -76,5 +76,5 @@ One agent writes. A different agent or command grades.
 | 8 | Your Own Daily Loop | Done | Full 6-part loop |
 | 9 | Rehearse a Routine | Done | One-off runs + A5 |
 | 10 | The Secrets Drill | Done | Secrets in env vars |
-| 11 | Two-Routine Gate | Pending | Human gate |
+| 11 | Two-Routine Gate | Done | Human gate |
 | 12 | Dreaming Loop | Pending | Meta-loop + improvement |
