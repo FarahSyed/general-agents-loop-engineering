@@ -1,1 +1,211 @@
-/* Nothing here yet. Read spec.md, then the frontend-design skill. */
+/* --- Tokens --- */
+:root {
+  --bg: #0d1117;
+  --fg: #e6edf3;
+  --accent: #3fb950;
+
+  --text-xs: 0.72rem;
+  --text-sm: 0.86rem;
+  --text-base: 1.06rem;
+  --text-lg: 1.35rem;
+  --text-xl: clamp(2rem, 5vw, 3.4rem);
+  --text-2xl: clamp(3rem, 11vw, 8.5rem);
+
+  --space-1: 0.3rem;
+  --space-2: 0.6rem;
+  --space-3: 1.1rem;
+  --space-4: 2rem;
+  --space-5: 3.5rem;
+  --space-6: 7rem;
+
+  --measure: 60ch;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.1);
+}
+
+/* --- Reset & base --- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+body {
+  font-family: "SF Mono", "Cascadia Code", "Fira Code", "Consolas", monospace;
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--fg);
+  background: var(--bg);
+  overflow-x: hidden;
+}
+
+/* --- Nav --- */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-4);
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+nav a {
+  color: var(--fg);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  opacity: 0.7;
+  transition: opacity 0.25s ease, color 0.25s ease;
+}
+
+nav a:hover,
+nav a:focus-visible {
+  opacity: 1;
+  color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* --- Hero --- */
+#hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-6) var(--space-4);
+}
+
+#hero h1 {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--accent);
+}
+
+#hero p {
+  margin-top: var(--space-3);
+  font-size: var(--text-lg);
+  max-width: var(--measure);
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+/* --- Sections --- */
+section {
+  padding: var(--space-6) var(--space-4);
+}
+
+section h2 {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: var(--space-4);
+  color: var(--accent);
+}
+
+/* --- Prose --- */
+.prose {
+  max-width: var(--measure);
+}
+
+.prose p + p {
+  margin-top: var(--space-3);
+}
+
+/* --- Cards --- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: var(--space-3);
+  align-items: start;
+}
+
+article {
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  padding: var(--space-4);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+article:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+article h3 {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+  color: var(--fg);
+}
+
+article p {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  opacity: 0.85;
+  max-width: var(--measure);
+}
+
+/* --- Skills --- */
+ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+li {
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  font-size: var(--text-sm);
+  color: var(--accent);
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+li:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* --- Contact --- */
+#contact p {
+  margin-bottom: var(--space-2);
+}
+
+#contact a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.25s ease;
+}
+
+#contact a:hover,
+#contact a:focus-visible {
+  border-bottom-color: var(--accent);
+}
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+  nav { gap: var(--space-2); padding: var(--space-2); }
+  nav a { font-size: var(--text-xs); }
+  #hero { padding: var(--space-6) var(--space-2); }
+  section { padding: var(--space-5) var(--space-2); }
+  .cards { grid-template-columns: 1fr; }
+}
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

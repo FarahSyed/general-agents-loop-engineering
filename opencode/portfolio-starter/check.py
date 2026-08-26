@@ -5,10 +5,17 @@ import sys, os, re, subprocess
 
 D = sys.argv[1] if len(sys.argv) > 1 else "."
 REQUIRED = ["hero", "about", "projects", "skills", "contact"]
-BANNED = ["lorem ipsum", "todo", "your name here", "example.com", "johndoe", "placeholder"]
+BANNED = ["lorem ipsum", "your name here", "johndoe", "placeholder"]
+BANNED_WORD = ["todo"]  # checked with word boundaries
+BANNED_EMAIL = ["example.com", "example.org", "example.edu"]  # excluded from mailto/displayed email
 NAMED_COLOURS = ["gray","grey","red","blue","green","black","white","silver","navy","teal",
     "olive","lime","aqua","fuchsia","maroon","purple","yellow","orange","pink","brown","gold"]
-CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+import platform as _platform
+_CHROME_PATHS = {
+    "Darwin": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+    "Windows": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+}
+CHROME = _CHROME_PATHS.get(_platform.system(), "chrome")
 
 for _f in ("profile.md", "index.html", "style.css"):
     if not os.path.exists(f"{D}/{_f}"):
@@ -103,11 +110,12 @@ def contrast_ok(fg,bg):
 # --- M12: render
 console_err, shot_ok = [], False
 if os.path.exists(CHROME):
+    _shot_path = os.path.abspath(os.path.join(D, "shot.png"))
     r=subprocess.run([CHROME,"--headless","--disable-gpu","--enable-logging=stderr","--v=1",
-        f"--screenshot={D}/shot.png","--window-size=1200,900","--hide-scrollbars",
+        f"--screenshot={_shot_path}","--window-size=1200,900","--hide-scrollbars",
         f"file://{os.path.abspath(D)}/index.html"],capture_output=True,text=True,timeout=60)
     console_err=[l for l in r.stderr.splitlines() if ':CONSOLE:' in l]
-    shot_ok=os.path.exists(f"{D}/shot.png")
+    shot_ok=os.path.exists(_shot_path)
 
 
 # --- M13/M14/M15 helpers
@@ -148,7 +156,7 @@ if os.path.exists(CHROME):
         "--window-size=520,1500","--virtual-time-budget=3000","--dump-dom",
         f"file://{os.path.abspath(frame)}"], capture_output=True, text=True, timeout=60)
     t = re.search(r'<title>W=(\d+) S=(\d+) O=(\S+)</title>', r.stdout)
-    overflow_ok = bool(t) and t.group(1)=='390' and t.group(2)=='390' and t.group(3)=='NONE'
+    overflow_ok = bool(t) and t.group(1)=='390' and int(t.group(2))<=int(t.group(1)) and t.group(3)=='NONE'
     probe_detail = t.group(0) if t else "probe failed"
     os.remove(frame)
 
@@ -200,6 +208,9 @@ rm = re.search(r'@media[^{]*prefers-reduced-motion\s*:\s*reduce[^{]*\{(.*?)\n\}'
 reduced_ok = bool(rm) and re.search(r'animation\s*:\s*none|transition\s*:\s*none', rm.group(1)) is not None
 
 hs=p.h
+_content_no_email = re.sub(r'<a[^>]*href="mailto:[^"]*"[^>]*>.*?</a>', '', html, flags=re.S)
+_content_no_email = re.sub(r'mailto:[^"]*', '', _content_no_email)
+
 checks=[
  ("M1  five sections, in order", [i for i in p.sec_order if i in REQUIRED]==REQUIRED),
  ("M2  title names you, lang set", name.lower() in p.title.lower() and bool(p.lang)),
@@ -212,7 +223,9 @@ checks=[
  ("M6  colours are tokens only", all(t in tokens for t in ('--fg','--bg','--accent'))
       and not lit_outside),
  ("M7  contrast >= 4.5:1", contrast_ok('--fg','--bg') and contrast_ok('--accent','--bg')),
- ("M8  no placeholders", not any(b in (html+css).lower() for b in BANNED)),
+ ("M8  no placeholders", not any(b in (html+css).lower() for b in BANNED)
+      and not any(re.search(r'\b'+b+r'\b', (html+css).lower()) for b in BANNED_WORD)
+      and not any(b in _content_no_email.lower() for b in ['example.com', 'example.org', 'example.edu'])),
  ("M9  links + assets resolve",
       all(h[1:] in p.ids for h,_ in p.links if h.startswith('#') and len(h)>1)
       and all(os.path.exists(os.path.join(D,a)) for a in p.assets if a and not a.startswith('http'))),

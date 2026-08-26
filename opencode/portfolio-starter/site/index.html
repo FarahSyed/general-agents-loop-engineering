@@ -1,5 +1,65 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><title>Not built yet</title></head>
-<body><p>Nothing here yet. That is the point — you are about to build it.</p></body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Farah Syed — AI Agent Developer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <a href="#hero">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="hero">
+    <h1>Farah Syed</h1>
+    <p>AI Agent Developer — I build autonomous agents that run real tasks while I sleep.</p>
+  </section>
+
+  <section id="about">
+    <h2>About</h2>
+    <div class="prose">
+      <p>I build autonomous agents that run real tasks while I sleep. My current focus is loop engineering — designing agents that watch, react, and remember without human intervention. I work primarily with OpenCode and Claude Code, and I'm learning to make agents that are useful, not just impressive.</p>
+      <p>Every project I build is a loop: something that starts, observes its environment, makes a decision, and acts — all without me touching a keyboard.</p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="cards">
+      <article>
+        <h3>ISS Space Station Tracker</h3>
+        <p>A live tracker that shows the International Space Station position every minute. Built as a class assignment for the Loop Engineering Crash Course. I wrote the bash loop script that runs the fetch on a schedule, and adapted the Python position fetcher to work on Windows. The loop runs independently — it fetches, formats, and displays the coordinates without any input from me.</p>
+      </article>
+      <article>
+        <h3>Morning Brief Agent</h3>
+        <p>An agent that scans code comments across a codebase and generates a daily summary of what needs attention. Uses a spine file to remember what it reported yesterday, so it can highlight what changed. Built as a class assignment. The loop wakes up each morning, reads the code, compares against its memory, and writes a brief — a small example of an agent that remembers.</p>
+      </article>
+      <article>
+        <h3>Doorbell Loop</h3>
+        <p>An event-driven loop that reviews pull requests on GitHub automatically. No human starts it — a PR event triggers the review. I set up the GitHub Actions workflow and token authentication so the agent can read diffs, comment on issues, and post its findings. The loop listens for events and responds without anyone pressing a button.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>Python</li>
+      <li>Bash scripting</li>
+      <li>GitHub Actions</li>
+      <li>OpenCode</li>
+      <li>Agent design</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p><a href="https://github.com/FarahSyed">github.com/FarahSyed</a></p>
+  </section>
+</body>
 </html>
